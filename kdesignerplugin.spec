@@ -6,7 +6,7 @@
 #
 Name     : kdesignerplugin
 Version  : 5.48.0
-Release  : 1
+Release  : 2
 URL      : https://download.kde.org/stable/frameworks/5.48/kdesignerplugin-5.48.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.48/kdesignerplugin-5.48.0.tar.xz
 Source99 : https://download.kde.org/stable/frameworks/5.48/kdesignerplugin-5.48.0.tar.xz.sig
@@ -17,6 +17,7 @@ Requires: kdesignerplugin-bin
 Requires: kdesignerplugin-license
 Requires: kdesignerplugin-data
 Requires: kdesignerplugin-man
+Requires: kdesignerplugin-lib
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : kcodecs-dev
@@ -24,6 +25,7 @@ BuildRequires : kcompletion-dev
 BuildRequires : kiconthemes-dev
 BuildRequires : kitemviews-dev
 BuildRequires : kjobwidgets-dev
+BuildRequires : kplotting-dev
 BuildRequires : ktextwidgets-dev
 BuildRequires : kwidgetsaddons-dev
 BuildRequires : kxmlgui-dev
@@ -57,12 +59,23 @@ data components for the kdesignerplugin package.
 %package dev
 Summary: dev components for the kdesignerplugin package.
 Group: Development
+Requires: kdesignerplugin-lib
 Requires: kdesignerplugin-bin
 Requires: kdesignerplugin-data
 Provides: kdesignerplugin-devel
 
 %description dev
 dev components for the kdesignerplugin package.
+
+
+%package lib
+Summary: lib components for the kdesignerplugin package.
+Group: Libraries
+Requires: kdesignerplugin-data
+Requires: kdesignerplugin-license
+
+%description lib
+lib components for the kdesignerplugin package.
 
 
 %package license
@@ -89,7 +102,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1532315459
+export SOURCE_DATE_EPOCH=1532316474
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -97,7 +110,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1532315459
+export SOURCE_DATE_EPOCH=1532316474
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/kdesignerplugin
 cp COPYING.LIB %{buildroot}/usr/share/doc/kdesignerplugin/COPYING.LIB
@@ -252,6 +265,10 @@ popd
 /usr/lib64/cmake/KF5DesignerPlugin/KF5DesignerPluginMacros.cmake
 /usr/lib64/cmake/KF5DesignerPlugin/KF5DesignerPluginTargets-relwithdebinfo.cmake
 /usr/lib64/cmake/KF5DesignerPlugin/KF5DesignerPluginTargets.cmake
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib64/qt5/plugins/designer/kf5widgets.so
 
 %files license
 %defattr(-,root,root,-)
