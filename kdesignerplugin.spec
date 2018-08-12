@@ -5,31 +5,26 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kdesignerplugin
-Version  : 5.48.0
-Release  : 2
-URL      : https://download.kde.org/stable/frameworks/5.48/kdesignerplugin-5.48.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.48/kdesignerplugin-5.48.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.48/kdesignerplugin-5.48.0.tar.xz.sig
+Version  : 5.49.0
+Release  : 3
+URL      : https://download.kde.org/stable/frameworks/5.49/kdesignerplugin-5.49.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.49/kdesignerplugin-5.49.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.49/kdesignerplugin-5.49.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: kdesignerplugin-bin
 Requires: kdesignerplugin-license
 Requires: kdesignerplugin-data
-Requires: kdesignerplugin-man
-Requires: kdesignerplugin-lib
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
-BuildRequires : kcodecs-dev
 BuildRequires : kcompletion-dev
 BuildRequires : kiconthemes-dev
 BuildRequires : kitemviews-dev
-BuildRequires : kjobwidgets-dev
 BuildRequires : kplotting-dev
 BuildRequires : ktextwidgets-dev
 BuildRequires : kwidgetsaddons-dev
 BuildRequires : kxmlgui-dev
-BuildRequires : solid-dev
 BuildRequires : sonnet-dev
 
 %description
@@ -42,7 +37,6 @@ Summary: bin components for the kdesignerplugin package.
 Group: Binaries
 Requires: kdesignerplugin-data
 Requires: kdesignerplugin-license
-Requires: kdesignerplugin-man
 
 %description bin
 bin components for the kdesignerplugin package.
@@ -59,23 +53,12 @@ data components for the kdesignerplugin package.
 %package dev
 Summary: dev components for the kdesignerplugin package.
 Group: Development
-Requires: kdesignerplugin-lib
 Requires: kdesignerplugin-bin
 Requires: kdesignerplugin-data
 Provides: kdesignerplugin-devel
 
 %description dev
 dev components for the kdesignerplugin package.
-
-
-%package lib
-Summary: lib components for the kdesignerplugin package.
-Group: Libraries
-Requires: kdesignerplugin-data
-Requires: kdesignerplugin-license
-
-%description lib
-lib components for the kdesignerplugin package.
 
 
 %package license
@@ -86,23 +69,15 @@ Group: Default
 license components for the kdesignerplugin package.
 
 
-%package man
-Summary: man components for the kdesignerplugin package.
-Group: Default
-
-%description man
-man components for the kdesignerplugin package.
-
-
 %prep
-%setup -q -n kdesignerplugin-5.48.0
+%setup -q -n kdesignerplugin-5.49.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1532316474
+export SOURCE_DATE_EPOCH=1534094796
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -110,7 +85,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1532316474
+export SOURCE_DATE_EPOCH=1534094796
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/kdesignerplugin
 cp COPYING.LIB %{buildroot}/usr/share/doc/kdesignerplugin/COPYING.LIB
@@ -266,22 +241,6 @@ popd
 /usr/lib64/cmake/KF5DesignerPlugin/KF5DesignerPluginTargets-relwithdebinfo.cmake
 /usr/lib64/cmake/KF5DesignerPlugin/KF5DesignerPluginTargets.cmake
 
-%files lib
-%defattr(-,root,root,-)
-/usr/lib64/qt5/plugins/designer/kf5widgets.so
-
 %files license
 %defattr(-,root,root,-)
 /usr/share/doc/kdesignerplugin/COPYING.LIB
-
-%files man
-%defattr(-,root,root,-)
-/usr/share/man/ca/man1/kgendesignerplugin.1
-/usr/share/man/de/man1/kgendesignerplugin.1
-/usr/share/man/it/man1/kgendesignerplugin.1
-/usr/share/man/man1/kgendesignerplugin.1
-/usr/share/man/nl/man1/kgendesignerplugin.1
-/usr/share/man/pt/man1/kgendesignerplugin.1
-/usr/share/man/pt_BR/man1/kgendesignerplugin.1
-/usr/share/man/sv/man1/kgendesignerplugin.1
-/usr/share/man/uk/man1/kgendesignerplugin.1
