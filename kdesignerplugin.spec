@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kdesignerplugin
-Version  : 5.53.0
-Release  : 11
-URL      : https://download.kde.org/stable/frameworks/5.53/kdesignerplugin-5.53.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.53/kdesignerplugin-5.53.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.53/kdesignerplugin-5.53.0.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 5.54.0
+Release  : 12
+URL      : https://download.kde.org/stable/frameworks/5.54/kdesignerplugin-5.54.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.54/kdesignerplugin-5.54.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.54/kdesignerplugin-5.54.0.tar.xz.sig
+Summary  : Integration of Frameworks widgets in Qt Designer/Creator
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: kdesignerplugin-bin = %{version}-%{release}
@@ -19,17 +19,7 @@ Requires: kdesignerplugin-license = %{version}-%{release}
 Requires: kdesignerplugin-man = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
-BuildRequires : kcodecs-dev
-BuildRequires : kcompletion-dev
-BuildRequires : kiconthemes-dev
-BuildRequires : kitemviews-dev
-BuildRequires : kjobwidgets-dev
 BuildRequires : kplotting-dev
-BuildRequires : ktextwidgets-dev
-BuildRequires : kwidgetsaddons-dev
-BuildRequires : kxmlgui-dev
-BuildRequires : solid-dev
-BuildRequires : sonnet-dev
 
 %description
 # KDesignerPlugin
@@ -83,14 +73,14 @@ man components for the kdesignerplugin package.
 
 
 %prep
-%setup -q -n kdesignerplugin-5.53.0
+%setup -q -n kdesignerplugin-5.54.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1544486617
+export SOURCE_DATE_EPOCH=1547321286
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -98,7 +88,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1544486617
+export SOURCE_DATE_EPOCH=1547321286
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdesignerplugin
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kdesignerplugin/COPYING.LIB
