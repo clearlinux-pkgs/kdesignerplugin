@@ -6,19 +6,31 @@
 #
 Name     : kdesignerplugin
 Version  : 5.59.0
-Release  : 19
+Release  : 20
 URL      : https://download.kde.org/stable/frameworks/5.59/kdesignerplugin-5.59.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.59/kdesignerplugin-5.59.0.tar.xz
 Source99 : https://download.kde.org/stable/frameworks/5.59/kdesignerplugin-5.59.0.tar.xz.sig
-Summary  : Integration of Frameworks widgets in Qt Designer/Creator
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: kdesignerplugin-bin = %{version}-%{release}
 Requires: kdesignerplugin-data = %{version}-%{release}
+Requires: kdesignerplugin-lib = %{version}-%{release}
 Requires: kdesignerplugin-license = %{version}-%{release}
+Requires: kdesignerplugin-man = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : kcodecs-dev
+BuildRequires : kcompletion-dev
+BuildRequires : kiconthemes-dev
+BuildRequires : kitemviews-dev
+BuildRequires : kjobwidgets-dev
 BuildRequires : kplotting-dev
+BuildRequires : ktextwidgets-dev
+BuildRequires : kwidgetsaddons-dev
+BuildRequires : kxmlgui-dev
+BuildRequires : solid-dev
+BuildRequires : sonnet-dev
 
 %description
 # KDesignerPlugin
@@ -46,14 +58,24 @@ data components for the kdesignerplugin package.
 %package dev
 Summary: dev components for the kdesignerplugin package.
 Group: Development
+Requires: kdesignerplugin-lib = %{version}-%{release}
 Requires: kdesignerplugin-bin = %{version}-%{release}
 Requires: kdesignerplugin-data = %{version}-%{release}
 Provides: kdesignerplugin-devel = %{version}-%{release}
 Requires: kdesignerplugin = %{version}-%{release}
-Requires: kdesignerplugin = %{version}-%{release}
 
 %description dev
 dev components for the kdesignerplugin package.
+
+
+%package lib
+Summary: lib components for the kdesignerplugin package.
+Group: Libraries
+Requires: kdesignerplugin-data = %{version}-%{release}
+Requires: kdesignerplugin-license = %{version}-%{release}
+
+%description lib
+lib components for the kdesignerplugin package.
 
 
 %package license
@@ -64,6 +86,14 @@ Group: Default
 license components for the kdesignerplugin package.
 
 
+%package man
+Summary: man components for the kdesignerplugin package.
+Group: Default
+
+%description man
+man components for the kdesignerplugin package.
+
+
 %prep
 %setup -q -n kdesignerplugin-5.59.0
 
@@ -71,10 +101,11 @@ license components for the kdesignerplugin package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1560015217
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562979505
 mkdir -p clr-build
 pushd clr-build
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -83,11 +114,11 @@ export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1560015217
+export SOURCE_DATE_EPOCH=1562979505
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdesignerplugin
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kdesignerplugin/COPYING.LIB
@@ -242,6 +273,22 @@ popd
 /usr/lib64/cmake/KF5DesignerPlugin/KF5DesignerPluginTargets-relwithdebinfo.cmake
 /usr/lib64/cmake/KF5DesignerPlugin/KF5DesignerPluginTargets.cmake
 
+%files lib
+%defattr(-,root,root,-)
+/usr/lib64/qt5/plugins/designer/kf5widgets.so
+
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/kdesignerplugin/COPYING.LIB
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/ca/man1/kgendesignerplugin.1
+/usr/share/man/de/man1/kgendesignerplugin.1
+/usr/share/man/it/man1/kgendesignerplugin.1
+/usr/share/man/man1/kgendesignerplugin.1
+/usr/share/man/nl/man1/kgendesignerplugin.1
+/usr/share/man/pt/man1/kgendesignerplugin.1
+/usr/share/man/pt_BR/man1/kgendesignerplugin.1
+/usr/share/man/sv/man1/kgendesignerplugin.1
+/usr/share/man/uk/man1/kgendesignerplugin.1
