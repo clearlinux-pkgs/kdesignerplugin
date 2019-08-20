@@ -6,7 +6,7 @@
 #
 Name     : kdesignerplugin
 Version  : 5.61.0
-Release  : 24
+Release  : 25
 URL      : https://download.kde.org/stable/frameworks/5.61/kdesignerplugin-5.61.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.61/kdesignerplugin-5.61.0.tar.xz
 Source1 : https://download.kde.org/stable/frameworks/5.61/kdesignerplugin-5.61.0.tar.xz.sig
@@ -20,17 +20,7 @@ Requires: kdesignerplugin-license = %{version}-%{release}
 Requires: kdesignerplugin-man = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
-BuildRequires : kcodecs-dev
-BuildRequires : kcompletion-dev
-BuildRequires : kiconthemes-dev
-BuildRequires : kitemviews-dev
-BuildRequires : kjobwidgets-dev
 BuildRequires : kplotting-dev
-BuildRequires : ktextwidgets-dev
-BuildRequires : kwidgetsaddons-dev
-BuildRequires : kxmlgui-dev
-BuildRequires : solid-dev
-BuildRequires : sonnet-dev
 
 %description
 # KDesignerPlugin
@@ -102,7 +92,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1566189152
+export SOURCE_DATE_EPOCH=1566269794
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -118,7 +108,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1566189152
+export SOURCE_DATE_EPOCH=1566269794
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdesignerplugin
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kdesignerplugin/COPYING.LIB
