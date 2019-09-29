@@ -5,17 +5,16 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kdesignerplugin
-Version  : 5.61.0
-Release  : 25
-URL      : https://download.kde.org/stable/frameworks/5.61/kdesignerplugin-5.61.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.61/kdesignerplugin-5.61.0.tar.xz
-Source1 : https://download.kde.org/stable/frameworks/5.61/kdesignerplugin-5.61.0.tar.xz.sig
-Summary  : Integration of Frameworks widgets in Qt Designer/Creator
+Version  : 5.62.0
+Release  : 26
+URL      : https://download.kde.org/stable/frameworks/5.62/portingAids/kdesignerplugin-5.62.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.62/portingAids/kdesignerplugin-5.62.0.tar.xz
+Source1 : https://download.kde.org/stable/frameworks/5.62/portingAids/kdesignerplugin-5.62.0.tar.xz.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: kdesignerplugin-bin = %{version}-%{release}
 Requires: kdesignerplugin-data = %{version}-%{release}
-Requires: kdesignerplugin-lib = %{version}-%{release}
 Requires: kdesignerplugin-license = %{version}-%{release}
 Requires: kdesignerplugin-man = %{version}-%{release}
 BuildRequires : buildreq-cmake
@@ -24,8 +23,8 @@ BuildRequires : kplotting-dev
 
 %description
 # KDesignerPlugin
-Integrating KDE frameworks widgets with Qt Designer
-## Introduction
+Integrating custom widgets with Qt Designer
+This tool is deprecated. In your CMake-based build system use [ECMAddQtDesignerPlugin](https://api.kde.org/ecm/module/ECMAddQtDesignerPlugin.html) from "Extra CMake Modules" instead.
 
 %package bin
 Summary: bin components for the kdesignerplugin package.
@@ -48,7 +47,6 @@ data components for the kdesignerplugin package.
 %package dev
 Summary: dev components for the kdesignerplugin package.
 Group: Development
-Requires: kdesignerplugin-lib = %{version}-%{release}
 Requires: kdesignerplugin-bin = %{version}-%{release}
 Requires: kdesignerplugin-data = %{version}-%{release}
 Provides: kdesignerplugin-devel = %{version}-%{release}
@@ -56,16 +54,6 @@ Requires: kdesignerplugin = %{version}-%{release}
 
 %description dev
 dev components for the kdesignerplugin package.
-
-
-%package lib
-Summary: lib components for the kdesignerplugin package.
-Group: Libraries
-Requires: kdesignerplugin-data = %{version}-%{release}
-Requires: kdesignerplugin-license = %{version}-%{release}
-
-%description lib
-lib components for the kdesignerplugin package.
 
 
 %package license
@@ -85,14 +73,14 @@ man components for the kdesignerplugin package.
 
 
 %prep
-%setup -q -n kdesignerplugin-5.61.0
+%setup -q -n kdesignerplugin-5.62.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1566269794
+export SOURCE_DATE_EPOCH=1569729248
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -104,11 +92,11 @@ export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1566269794
+export SOURCE_DATE_EPOCH=1569729248
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdesignerplugin
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kdesignerplugin/COPYING.LIB
@@ -125,37 +113,6 @@ popd
 
 %files data
 %defattr(-,root,root,-)
-/usr/share/kf5/widgets/pics/k3iconview.png
-/usr/share/kf5/widgets/pics/k3listview.png
-/usr/share/kf5/widgets/pics/kactionselector.png
-/usr/share/kf5/widgets/pics/kactivelabel.png
-/usr/share/kf5/widgets/pics/kbusyindicatorwidget.png
-/usr/share/kf5/widgets/pics/kcharselect.png
-/usr/share/kf5/widgets/pics/kcmodule.png
-/usr/share/kf5/widgets/pics/kcolorbutton.png
-/usr/share/kf5/widgets/pics/kcolorcombo.png
-/usr/share/kf5/widgets/pics/kcombobox.png
-/usr/share/kf5/widgets/pics/kdatepicker.png
-/usr/share/kf5/widgets/pics/kdatetable.png
-/usr/share/kf5/widgets/pics/kdualcolorbutton.png
-/usr/share/kf5/widgets/pics/kfontcombo.png
-/usr/share/kf5/widgets/pics/kfontrequester.png
-/usr/share/kf5/widgets/pics/kgradientselector.png
-/usr/share/kf5/widgets/pics/khistorycombo.png
-/usr/share/kf5/widgets/pics/khsselector.png
-/usr/share/kf5/widgets/pics/kiconbutton.png
-/usr/share/kf5/widgets/pics/kkeybutton.png
-/usr/share/kf5/widgets/pics/kled.png
-/usr/share/kf5/widgets/pics/klineedit.png
-/usr/share/kf5/widgets/pics/klistbox.png
-/usr/share/kf5/widgets/pics/kpalettetable.png
-/usr/share/kf5/widgets/pics/kpasswordedit.png
-/usr/share/kf5/widgets/pics/kruler.png
-/usr/share/kf5/widgets/pics/ksqueezedtextlabel.png
-/usr/share/kf5/widgets/pics/ktextedit.png
-/usr/share/kf5/widgets/pics/kurlcomborequester.png
-/usr/share/kf5/widgets/pics/kurllabel.png
-/usr/share/kf5/widgets/pics/kurlrequester.png
 /usr/share/locale/af/LC_MESSAGES/kdesignerplugin5_qt.qm
 /usr/share/locale/ar/LC_MESSAGES/kdesignerplugin5_qt.qm
 /usr/share/locale/as/LC_MESSAGES/kdesignerplugin5_qt.qm
@@ -263,10 +220,6 @@ popd
 /usr/lib64/cmake/KF5DesignerPlugin/KF5DesignerPluginMacros.cmake
 /usr/lib64/cmake/KF5DesignerPlugin/KF5DesignerPluginTargets-relwithdebinfo.cmake
 /usr/lib64/cmake/KF5DesignerPlugin/KF5DesignerPluginTargets.cmake
-
-%files lib
-%defattr(-,root,root,-)
-/usr/lib64/qt5/plugins/designer/kf5widgets.so
 
 %files license
 %defattr(0644,root,root,0755)
