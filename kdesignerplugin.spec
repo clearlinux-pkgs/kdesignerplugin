@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kdesignerplugin
-Version  : 5.62.0
-Release  : 26
-URL      : https://download.kde.org/stable/frameworks/5.62/portingAids/kdesignerplugin-5.62.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.62/portingAids/kdesignerplugin-5.62.0.tar.xz
-Source1 : https://download.kde.org/stable/frameworks/5.62/portingAids/kdesignerplugin-5.62.0.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 5.63.0
+Release  : 27
+URL      : https://download.kde.org/stable/frameworks/5.63/portingAids/kdesignerplugin-5.63.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.63/portingAids/kdesignerplugin-5.63.0.tar.xz
+Source1 : https://download.kde.org/stable/frameworks/5.63/portingAids/kdesignerplugin-5.63.0.tar.xz.sig
+Summary  : Integration of Frameworks widgets in Qt Designer/Creator
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: kdesignerplugin-bin = %{version}-%{release}
@@ -51,6 +51,7 @@ Requires: kdesignerplugin-bin = %{version}-%{release}
 Requires: kdesignerplugin-data = %{version}-%{release}
 Provides: kdesignerplugin-devel = %{version}-%{release}
 Requires: kdesignerplugin = %{version}-%{release}
+Requires: kdesignerplugin = %{version}-%{release}
 
 %description dev
 dev components for the kdesignerplugin package.
@@ -73,16 +74,17 @@ man components for the kdesignerplugin package.
 
 
 %prep
-%setup -q -n kdesignerplugin-5.62.0
+%setup -q -n kdesignerplugin-5.63.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1569729248
+export SOURCE_DATE_EPOCH=1571167412
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -96,10 +98,10 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1569729248
+export SOURCE_DATE_EPOCH=1571167412
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdesignerplugin
-cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kdesignerplugin/COPYING.LIB
+cp %{_builddir}/kdesignerplugin-5.63.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kdesignerplugin/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 pushd clr-build
 %make_install
 popd
@@ -223,7 +225,7 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/kdesignerplugin/COPYING.LIB
+/usr/share/package-licenses/kdesignerplugin/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 
 %files man
 %defattr(0644,root,root,0755)
