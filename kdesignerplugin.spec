@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kdesignerplugin
-Version  : 5.64.0
-Release  : 28
-URL      : https://download.kde.org/stable/frameworks/5.64/portingAids/kdesignerplugin-5.64.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.64/portingAids/kdesignerplugin-5.64.0.tar.xz
-Source1 : https://download.kde.org/stable/frameworks/5.64/portingAids/kdesignerplugin-5.64.0.tar.xz.sig
+Version  : 5.65.0
+Release  : 29
+URL      : https://download.kde.org/stable/frameworks/5.65/portingAids/kdesignerplugin-5.65.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.65/portingAids/kdesignerplugin-5.65.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.65/portingAids/kdesignerplugin-5.65.0.tar.xz.sig
 Summary  : Integration of Frameworks widgets in Qt Designer/Creator
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -65,14 +65,15 @@ license components for the kdesignerplugin package.
 
 
 %prep
-%setup -q -n kdesignerplugin-5.64.0
+%setup -q -n kdesignerplugin-5.65.0
+cd %{_builddir}/kdesignerplugin-5.65.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573359273
+export SOURCE_DATE_EPOCH=1576514751
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -89,10 +90,10 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1573359273
+export SOURCE_DATE_EPOCH=1576514751
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdesignerplugin
-cp %{_builddir}/kdesignerplugin-5.64.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kdesignerplugin/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/kdesignerplugin-5.65.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kdesignerplugin/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 pushd clr-build
 %make_install
 popd
