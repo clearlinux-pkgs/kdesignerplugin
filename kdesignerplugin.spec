@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kdesignerplugin
-Version  : 5.71.0
-Release  : 44
-URL      : https://download.kde.org/stable/frameworks/5.71/portingAids/kdesignerplugin-5.71.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.71/portingAids/kdesignerplugin-5.71.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.71/portingAids/kdesignerplugin-5.71.0.tar.xz.sig
+Version  : 5.73.0
+Release  : 45
+URL      : https://download.kde.org/stable/frameworks/5.73/portingAids/kdesignerplugin-5.73.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.73/portingAids/kdesignerplugin-5.73.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.73/portingAids/kdesignerplugin-5.73.0.tar.xz.sig
 Summary  : Integration of Frameworks widgets in Qt Designer/Creator
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -80,15 +80,15 @@ man components for the kdesignerplugin package.
 
 
 %prep
-%setup -q -n kdesignerplugin-5.71.0
-cd %{_builddir}/kdesignerplugin-5.71.0
+%setup -q -n kdesignerplugin-5.73.0
+cd %{_builddir}/kdesignerplugin-5.73.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1592246052
+export SOURCE_DATE_EPOCH=1597703165
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -100,14 +100,14 @@ export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1592246052
+export SOURCE_DATE_EPOCH=1597703165
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdesignerplugin
-cp %{_builddir}/kdesignerplugin-5.71.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kdesignerplugin/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/kdesignerplugin-5.73.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kdesignerplugin/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 pushd clr-build
 %make_install
 popd
