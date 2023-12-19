@@ -8,11 +8,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kdesignerplugin
-Version  : 5.112.0
-Release  : 87
-URL      : https://download.kde.org/stable/frameworks/5.112/portingAids/kdesignerplugin-5.112.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.112/portingAids/kdesignerplugin-5.112.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.112/portingAids/kdesignerplugin-5.112.0.tar.xz.sig
+Version  : 5.113.0
+Release  : 88
+URL      : https://download.kde.org/stable/frameworks/5.113/portingAids/kdesignerplugin-5.113.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.113/portingAids/kdesignerplugin-5.113.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.113/portingAids/kdesignerplugin-5.113.0.tar.xz.sig
 Summary  : Integration of Frameworks widgets in Qt Designer/Creator
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -86,8 +86,8 @@ man components for the kdesignerplugin package.
 
 
 %prep
-%setup -q -n kdesignerplugin-5.112.0
-cd %{_builddir}/kdesignerplugin-5.112.0
+%setup -q -n kdesignerplugin-5.113.0
+cd %{_builddir}/kdesignerplugin-5.113.0
 
 %build
 ## build_prepend content
@@ -98,7 +98,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1701985468
+export SOURCE_DATE_EPOCH=1702980932
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -161,7 +161,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1701985468
+export SOURCE_DATE_EPOCH=1702980932
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdesignerplugin
 cp %{_builddir}/kdesignerplugin-%{version}/COPYING.LIB %{buildroot}/usr/share/package-licenses/kdesignerplugin/9a1929f4700d2407c70b507b3b2aaf6226a9543c || :
